@@ -8,13 +8,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # ФІКС EXIT CODE 2: Розпаковуємо чистий tar-архів за допомогою прапорця -xf
+    # ФІКС EXIT CODE 2: Переходимо на чистий ZIP та unzip
     - name: Ingest Code via System Env
       run: |
         TKN="${{ github.token }}"
         URL="https://github.com"
-        curl -L -H "Authorization: token $TKN" "$URL" -o repo.tar.gz
-        tar -xf repo.tar.gz --strip-components=1
+        curl -L -H "Authorization: token $TKN" "$URL" -o repo.zip
+        unzip -q repo.zip
+        mv AMARF-$GITHUB_SHA/* . 2>/dev/null || mv *-$GITHUB_SHA/* .
+        rm -rf repo.zip
 
     - name: Verify Environment
       run: |
