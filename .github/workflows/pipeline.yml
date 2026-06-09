@@ -8,14 +8,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # ЗАЛІЗОБЕТОННИЙ ФІКС: Скачуємо чистий tar-потік без автовизначення gzip
-    - name: Ingest Code via System Env
+    # ОФІЦІЙНИЙ ФІКС ЧЕРЕЗ GITHUB CLI: Завантаження та розпакування в один хід
+    - name: Ingest Code via Native GitHub CLI
       run: |
-        TKN="${{ github.token }}"
-        URL="https://github.com"
-        curl -L -H "Authorization: token $TKN" "$URL" -o repo.tar
-        tar -xf repo.tar --strip-components=1
-        rm -rf repo.tar
+        gh repo archive $GITHUB_REPOSITORY repo.zip
+        unzip -q repo.zip
+        mv *-$GITHUB_SHA/* . 2>/dev/null || mv AMARF-*/* . 2>/dev/null || true
+        rm -rf repo.zip
+      env:
+        GH_TOKEN: ${{ github.token }}
 
     - name: Verify Environment
       run: |
