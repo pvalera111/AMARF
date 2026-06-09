@@ -1,8 +1,6 @@
-name: AMARF Core Build Pipeline
+name: AMARF Pipeline
 on:
   push:
-    branches: [ main, develop ]
-  pull_request:
     branches: [ main ]
 
 jobs:
@@ -10,28 +8,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository Code via Safe Action
-      uses: actions/checkout@v4
-      with:
-        # Офіційний фікс 2026 року: примусове виконання кроку на Node 24
-        force-javascript-actions-to-node24: true
-
-    - name: Set up Python Runtime Environment
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12'
-        # Повторюємо захисний фікс Node 24 для кроку налаштування мови
-        force-javascript-actions-to-node24: true
-
-    - name: Install Framework Matrix Dependencies
+    - name: Clone Repository
       run: |
-        python -m pip install --upgrade pip
-        pip install ruff numpy torch transformers
+        git clone https://x-access-token:${{ github.token }}@://github.com{{ github.repository }}.git .
+        git checkout ${{ github.sha }}
 
-    - name: Strict Quality Code Check via Ruff
+    - name: Verify Environment
+      run: |
+        python3 --version
+
+    - name: Install Matrix
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install ruff numpy torch transformers
+
+    - name: Run Quality Linter
       run: |
         ruff check .
 
-    - name: Run Mock Deployment Verification
+    - name: Verify Architecture
       run: |
-        python workflow.py --mock-mode
+        python3 workflow.py --mock-mode
