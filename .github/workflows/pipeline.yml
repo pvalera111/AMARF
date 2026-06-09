@@ -8,10 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Clone Repository
+    - name: Native Shallow Clone
       run: |
-        git clone https://x-access-token:${{ github.token }}@://github.com{{ github.repository }}.git .
-        git checkout ${{ github.sha }}
+        git clone --depth 1 https://x-access-token:${{ github.token }}@://github.com{{ github.repository }}.git .
 
     - name: Verify Environment
       run: |
