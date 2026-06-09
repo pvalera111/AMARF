@@ -10,14 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
       ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: "true"
 
     steps:
     - name: Checkout Repository Code
-      uses: actions/checkout@v4.1.7
+      uses: actions/checkout@v4
 
     - name: Set up Python Runtime Env
-      uses: actions/setup-python@v5.1.1
+      uses: actions/setup-python@v5
       with:
         python-version: '3.12'
 
@@ -30,4 +31,5 @@ jobs:
       run: ruff check .
 
     - name: Run Mock Deployment Verification
-      run: python workflow.py --mock-mode
+      run: |
+        python workflow.py --mock-mode
