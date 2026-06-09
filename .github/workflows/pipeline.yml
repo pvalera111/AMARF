@@ -22,7 +22,6 @@ jobs:
         python3 -m pip install --upgrade pip
         pip3 install ruff numpy torch transformers
 
-    # ФІКС EXIT CODE 3: Авто-корекція стилю та ігнорування блокувань лінтера
     - name: Run Quality Linter
       run: |
         ruff check . --fix || true
