@@ -10,19 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Ingest Code via Native Git
-      run: |
-        git clone https://github.com{{ github.repository }}.git .
-        git checkout ${{ github.sha }}
+    - name: Checkout Repository Code via Safe Action
+      uses: actions/checkout@v4
+      with:
+        # Офіційний фікс 2026 року: примусове виконання кроку на Node 24
+        force-javascript-actions-to-node24: true
 
-    - name: Verify System Python Environment
-      run: |
-        python3 --version
+    - name: Set up Python Runtime Environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        # Повторюємо захисний фікс Node 24 для кроку налаштування мови
+        force-javascript-actions-to-node24: true
 
-    - name: Install Matrix Dependencies
+    - name: Install Framework Matrix Dependencies
       run: |
-        python3 -m pip install --upgrade pip
-        pip3 install ruff numpy torch transformers
+        python -m pip install --upgrade pip
+        pip install ruff numpy torch transformers
 
     - name: Strict Quality Code Check via Ruff
       run: |
@@ -30,4 +34,4 @@ jobs:
 
     - name: Run Mock Deployment Verification
       run: |
-        python3 workflow.py --mock-mode
+        python workflow.py --mock-mode
