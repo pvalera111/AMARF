@@ -10,29 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Чистий Linux клонування коду замість actions/checkout
-    name: Ingest Repository Code via Native Git
-    run: |
-      git clone https://github.com{{ github.repository }}.git .
-      git checkout ${{ github.sha }}
+    - name: Ingest Code via Native Git
+      run: |
+        git clone https://github.com{{ github.repository }}.git .
+        git checkout ${{ github.sha }}
 
-    # 2. Перевірка версії встановленого в системі Python
-    name: Verify System Python Environment
-    run: |
-      python3 --version
+    - name: Verify System Python Environment
+      run: |
+        python3 --version
 
-    # 3. Встановлення залежностей фреймворку
-    name: Install Framework Matrix Dependencies
-    run: |
-      python3 -m pip install --upgrade pip
-      pip3 install ruff numpy torch transformers
+    - name: Install Matrix Dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install ruff numpy torch transformers
 
-    # 4. Сувора перевірка коду через лінтер ruff
-    name: Strict Quality Code Check via Ruff
-    run: |
-      ruff check .
+    - name: Strict Quality Code Check via Ruff
+      run: |
+        ruff check .
 
-    # 5. Запуск нашого еволюційного Mock-тесту
-    name: Run Mock Deployment Verification
-    run: |
-      python3 workflow.py --mock-mode
+    - name: Run Mock Deployment Verification
+      run: |
+        python3 workflow.py --mock-mode
