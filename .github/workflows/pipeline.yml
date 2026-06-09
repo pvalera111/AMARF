@@ -8,10 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # ОФІЦІЙНИЙ ФІКС GITHUB CLI 2026: Завантаження коду без аргументів шляху
-    - name: Ingest Code via Native Artifact API
+    # ЕТАЛОННИЙ ФІКС GITHUB CLI: Передача назви файлу через прапорець --output
+    - name: Ingest Code via GitHub CLI
       run: |
-        gh run download --repo $GITHUB_REPOSITORY
+        gh repo archive $GITHUB_REPOSITORY --output=repo.zip
+        unzip -q repo.zip
+        mv *-$GITHUB_SHA/* . 2>/dev/null || mv AMARF-*/* . 2>/dev/null || true
+        rm -rf repo.zip
       env:
         GH_TOKEN: ${{ github.token }}
 
