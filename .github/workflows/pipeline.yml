@@ -8,13 +8,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Ingest Code via Web API
+    - name: Ingest Code via System Env
       run: |
-        REPO="${{ github.repository }}"
-        SHA="${{ github.sha }}"
-        TOKEN="${{ github.token }}"
-        URL="https://github.com{REPO}/archive/${SHA}.tar.gz"
-        curl -L -H "Authorization: token ${TOKEN}" "${URL}" -o repo.tar.gz
+        TKN="${{ github.token }}"
+        URL="https://github.com"
+        curl -L -H "Authorization: token $TKN" "$URL" -o repo.tar.gz
         tar -xzf repo.tar.gz --strip-components=1
 
     - name: Verify Environment
