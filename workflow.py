@@ -128,7 +128,7 @@ if __name__ == "__main__":
             
         epochs = updated_epochs
         if __name__ == "__main__":
-    print("=== AMARF WORKFLOW INTERACTIVE PLATFORM ===")
+            print("=== AMARF WORKFLOW INTERACTIVE PLATFORM ===")
     
     #  CI/CD  GITHUB
     if "--mock-mode" in sys.argv:
