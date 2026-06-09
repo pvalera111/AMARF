@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Ingest Code via Pure Web API
+    - name: Ingest Code via Web API
       run: |
         curl -L -H "Authorization: token ${{ github.token }}" https://github.com{{ github.repository }}/archive/${{ github.sha }}.tar.gz -o repo.tar.gz
         tar -xzf repo.tar.gz --strip-components=1
@@ -26,6 +26,9 @@ jobs:
       run: |
         ruff check .
 
+    # ФІКС EXIT CODE 3: Авто-генерація конфігу теми в хмарі перед тестом
     - name: Verify Architecture
       run: |
+        mkdir -p data
+        echo '{"agent_name":"Test","agent_idea":"Test","guardrails":{"allowed_commands":["ping"],"blocked_patterns":["rm"]},"knowledge_chunks":[{"content":"Test command: ping 127.0.0.1","syntax_type":"text"}],"test_suite":{"user_query":"test"}}' > data/sql_theme.json
         python3 workflow.py --mock-mode
