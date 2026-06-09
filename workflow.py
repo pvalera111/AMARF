@@ -144,5 +144,4 @@ if __name__ == "__main__":
     data_dir = "data"
     if not os.path.exists(data_dir):
         print(f"❌ Error: '{data_dir}' directory not found.")
-...
 
