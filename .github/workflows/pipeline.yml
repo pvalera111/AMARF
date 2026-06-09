@@ -8,15 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Ingest Code via GitHub CLI
-      run: |
-        gh repo archive $GITHUB_REPOSITORY -y
-        mv $GITHUB_REPOSITORY.zip repo.zip
-        unzip -q repo.zip
-        mv *-$GITHUB_SHA/* . 2>/dev/null || mv AMARF-*/* . 2>/dev/null || true
-        rm -rf repo.zip
-      env:
-        GH_TOKEN: ${{ github.token }}
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
     - name: Verify Environment
       run: |
@@ -34,5 +27,4 @@ jobs:
     - name: Verify Architecture
       run: |
         mkdir -p data
-        echo '{"agent_name":"Test","agent_idea":"Test","guardrails":{"allowed_commands":["ping"],"blocked_patterns":["rm"]},"knowledge_chunks":[{"content":"Test command: ping 127.0.0.1","syntax_type":"text"}],"test_suite":{"user_query":"test"}}' > data/sql_theme.json
-        python3 workflow.py --mock-mode
+        echo '{"agent_name
