@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # ЕТАЛОННИЙ ФІКС GITHUB CLI: Передача назви файлу через прапорець --output
     - name: Ingest Code via GitHub CLI
       run: |
-        gh repo archive $GITHUB_REPOSITORY --output=repo.zip
+        gh repo archive $GITHUB_REPOSITORY -y
+        mv $GITHUB_REPOSITORY.zip repo.zip
         unzip -q repo.zip
         mv *-$GITHUB_SHA/* . 2>/dev/null || mv AMARF-*/* . 2>/dev/null || true
         rm -rf repo.zip
