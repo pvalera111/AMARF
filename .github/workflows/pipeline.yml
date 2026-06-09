@@ -1,0 +1,29 @@
+name: AMARF Core Build Pipeline
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python Runtime Env
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install Framework Core Matrix Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install ruff numpy torch transformers
+
+    - name: Strict Quality Code Check via Ruff
+      run: ruff check .
+
+    - name: Run Mock Deployment Verification
+      run: python workflow.py --mock-mode
