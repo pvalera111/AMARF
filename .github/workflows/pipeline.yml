@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Secure Shallow Ingestion
+    - name: Ingest Code via Pure Web API
       run: |
-        git config --global --add safe.directory '*'
-        git clone --depth 1 https://x-access-token:${{ github.token }}@://github.com{{ github.repository }}.git .
+        curl -L -H "Authorization: token ${{ github.token }}" https://github.com{{ github.repository }}/archive/${{ github.sha }}.tar.gz -o repo.tar.gz
+        tar -xzf repo.tar.gz --strip-components=1
 
     - name: Verify Environment
       run: |
