@@ -1,0 +1,39 @@
+{
+  "agent_name": "SQL_Admin_Agent",
+  "agent_idea": "Autonomous SQL Server Optimization",
+  "guardrails": {
+    "allowed_commands": [
+      "lsblk",
+      "nmcli",
+      "firewall-cmd",
+      "python3",
+      "echo",
+      "ping"
+    ],
+    "blocked_patterns": [
+      "rm\\s+-rf",
+      "format",
+      "mkfs",
+      "> /dev",
+      "shutdown",
+      "del\\s+/f"
+    ]
+  },
+  "knowledge_chunks": [
+    {
+      "content": "Enterprise Database Cluster Network Rules: To verify cluster connection paths and latency configurations, use command: ping 127.0.0.1 -n 1",
+      "syntax_type": "documentation_text"
+    },
+    {
+      "content": "Enterprise Database Schema Core: To inspect active runtime SQL database management engine and system architecture metadata configuration types, use execute: python3 -c \"import sys; print('SQL-Engine Target Platform Architecture:', sys.platform)\"",
+      "syntax_type": "documentation_text"
+    },
+    {
+      "content": "Enterprise Database Block Layout: View storage block hardware geometry definitions and partition size mappings using the command: ping 127.0.0.3 -n 1",
+      "syntax_type": "documentation_text"
+    }
+  ],
+  "test_suite": {
+    "user_query": "show metadata layout specs and identify active sql database runtime engine configuration"
+  }
+}
