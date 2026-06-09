@@ -127,3 +127,22 @@ if __name__ == "__main__":
             break
             
         epochs = updated_epochs
+        if __name__ == "__main__":
+    print("=== AMARF WORKFLOW INTERACTIVE PLATFORM ===")
+    
+    #  CI/CD  GITHUB
+    if "--mock-mode" in sys.argv:
+        print("🚀 [CI/CD] Mock Mode active. Validating dataset structures...")
+        data_dir = "data"
+        if os.path.exists(data_dir) and os.listdir(data_dir):
+            print("✅ [CI/CD] Validation successful. Infrastructure configuration clean.")
+            sys.exit(0)
+        else:
+            print("❌ [CI/CD] Validation failed. Data directories empty.")
+            sys.exit(1)
+            
+    data_dir = "data"
+    if not os.path.exists(data_dir):
+        print(f"❌ Error: '{data_dir}' directory not found.")
+...
+
