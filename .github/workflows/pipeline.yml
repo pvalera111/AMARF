@@ -8,12 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # ФІКС EXIT CODE 2: Розпаковуємо чистий tar-архів за допомогою прапорця -xf
     - name: Ingest Code via System Env
       run: |
         TKN="${{ github.token }}"
         URL="https://github.com"
         curl -L -H "Authorization: token $TKN" "$URL" -o repo.tar.gz
-        tar -xzf repo.tar.gz --strip-components=1
+        tar -xf repo.tar.gz --strip-components=1
 
     - name: Verify Environment
       run: |
