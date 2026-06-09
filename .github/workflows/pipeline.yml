@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Native Shallow Clone
+    - name: Secure Shallow Ingestion
       run: |
+        git config --global --add safe.directory '*'
         git clone --depth 1 https://x-access-token:${{ github.token }}@://github.com{{ github.repository }}.git .
 
     - name: Verify Environment
