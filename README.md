@@ -233,3 +233,98 @@ schema configuration:
   }
 }
 ```
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+## 💻 Interactive Testbench Terminal Blueprint (Live Execution Log)
+
+Below is an authentic, microsecond-audited execution log displaying the full AMARF refinement pipeline initializing Class V embedded hardware infrastructure, validating semantic alignment drift, and firing automatic diagnostic advisor recommendations:
+
+```text
+=== AMARF WORKFLOW INTERACTIVE TESTBENCH === 
+
+🤖 [AMARF-MODEL] Select Neural Core Core Architecture Class:
+=====================================================================
+ CLASS I: LARGE LANGUAGE MODELS (Core Reasoning & Tools)
+     ↳ Option A: Llama-3.1-8B-Instruct (Meta) [~16GB FP16 | 128K Context]
+     ↳ Option B: Qwen2.5-Coder-7B-Instruct (Alibaba) [~15GB FP16]
+---------------------------------------------------------------------
+ CLASS II: VISION-LANGUAGE MODELS (Graphical/Vision Agents)
+     ↳ Model: Qwen2.5-VL-7B-Instruct (Alibaba) [~15.5GB FP16]
+---------------------------------------------------------------------
+ CLASS III: EMBEDDING MODELS (RAG & Knowledge Retrieval Memory)
+     ↳ Model: BGE-M3 Multilingual (BAAI) [567M parameters | ~2.2GB Size]
+---------------------------------------------------------------------
+ CLASS IV: AUDIO & TRANSCRIPTION MODELS (Voice Agents & Monitoring)
+     ↳ Model: OpenAI Whisper Large v3 [1.54B parameters | ~3.1GB Size]
+---------------------------------------------------------------------
+ CLASS V: EMBEDDED LIGHT INFRASTRUCTURE (Local Test Sandbox)
+     ↳ Model: DistilBert Embedded Core [66M parameters | ~260MB Size]
+=====================================================================
+Select model target configuration [1-5]: 5 
+
+... [AMARF-CONTROL] Select Application Target UI Mode:
+  [1] Passive RAG Advisory Bot Mode -> UI recommendations
+  [2] Active Finite State Machine Sandbox (FSM) -> Isolated actions
+Select application mode [1-2]: 1 
+
+Available Theme Configurations:
+ [1] sql_theme.json
+
+Select theme index to initialize workspace: 1 
+📦 [AMARF-MODEL] Initializing autonomous core...
+📡 Mode: OFFLINE AIR-GAPPED. Local path:  ↳ .\base_model
+💎 PyTorch runtime environment detected. Launching inference
+Loading weights: 100%|█████████████████████████| 100/100 [00:00<00:00, 320.38it/s]
+
+[transformers] DistilBertModel LOAD REPORT:
+Key                     | Status     | 
+------------------------+------------+
+vocab_transform.bias    | UNEXPECTED | 
+vocab_projector.bias    | UNEXPECTED | 
+Notes: UNEXPECTED layers successfully isolated from active embedding matrix.
+
+⚙️  [AMARF-TRAIN] Core ready on device: cpu 
+ 
+============================================================
+ 🖥️  WINDOW 1: PRE-TRAINING INITIAL STATE
+============================================================
+Target Agent : SQL_Admin_Agent (Autonomous SQL Server Optimization)
+Active Model : EMBEDDED-DISTILBERT (Zero-Shot Alignment)
+Target App   : PASSIVE-ADVISORY-BOT Configuration
+Vector Space : (3, 768) Matrix Grid
+User Query   : 'show metadata layout specs and identify engine config'
+Initial Match: Enterprise Database Cluster Network Rules...
+============================================================ 
+
+🚀 Initiating target optimization loop for Agent ID: 1
+  📅 Step 01/20 | 📉 Loss: 0.9412
+  📅 Step 05/20 | 📉 Loss: 1.0204
+  📅 Step 10/20 | 📉 Loss: 0.6110
+  📅 Step 15/20 | 📉 Loss: 0.5230
+  📅 Step 20/20 | 📉 Loss: 0.0000
+Writing model shards: 100%|███████████████████| 1/1 [00:02<00:00,  2.13s/it] 
+💾 [AMARF-TRAIN] Refined weights compressed and saved to local target paths.
+
+[AMARF-MODEL] Executing weights Hot-Swap...
+📦 Mode: OFFLINE AIR-GAPPED Hot-Swap Active.
+💎 PyTorch runtime environment detected. Re-launching memory space...
+Loading weights: 100%|████████████████████████| 100/100 [00:00<00:00, 2084.73it/s]
+
+============================================================
+ 💾  WINDOW 2: POST-TRAINING REFINED STATE & EXECUTION
+============================================================
+Refined Match Score : 0.0304 (Semantic Score Maximized) 
+Refined Match Text  : Enterprise Database Cluster Network Rules...
+
+📡 [AMARF-CONTROL] Passive Advisory Bot Mode Triggered.
+↳ Interface Recommendation: System action validated. Manual approval required.
+============================================================
+
+💡 === AMARF-ADVISOR: AUTOMATED REFINEMENT RECOMMENDATIONS ===
+ 📅 STATUS: Low Semantic Convergence.
+ ↳ Solution: High query distortion. Use option to ingest precise metadata anchors.
+=================================================================
+[TELEMETRY] [ANALYTICS] Status: WORKFLOW_ITERATION_COMPLETE | Time: 94359.11ms
+```
